@@ -77,12 +77,14 @@
 
             <p>{{selectedSkillLevel[myIndex].description.text}}</p>
             <p ng-show="selectedSkillLevel[myIndex].prerequsites"><i>{{selectedSkillLevel[myIndex].prerequsites}}</i></p>
-            <videogular vg-theme="config.theme.url">
+            <div class="videogular-container">
+              <videogular vg-theme="config.theme.url">
                 <vg-media vg-src="config.sources"
                           vg-tracks="config.tracks"
                           vg-native-controls="true">
                 </vg-media>
-            </videogular>
+              </videogular>
+            </div>
             <ol>
                 <li ng-repeat="step in selectedSkillLevel[myIndex].description.steps">{{step}}</li>
             </ol>
