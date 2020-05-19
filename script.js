@@ -38,13 +38,16 @@ app.service('myService', function() {
             {
                 title: '5050 Frontside 180',
                 description: {
-                    text: "Are you READY to get really good at frontside 180's? Here's the deal...Save this video, study it, and come back to this post if you're struggling to land this trick.",
-                    prerequsites: '',
+                    text: "Let's talk about 5050-frontside 180 out.",
+                    prerequsites: "You need to be able to do ride switch. If you struggle with switch, hit me up and I'll give you some tips.",
                     steps: [
-                        "Make sure you pop, clear the feature with your tail and then rotate. I think about it as a step one, then step two. If you are impatient and spin to early, you will tap the feature with your tail and most likely land on your shins. Not sick; trust me.",
-                        "Land on the front foot with an exaggerated bent knee. This will make it look cooler, but more importantly, it helps commit your center of mass on the rail. By committing to the rail, it will help you feel balanced and locked in.",
-                        "It's ok to look at the feature with your eyes but not your whole body. If you start to flex at the waist, you will shift your weight forward. Once you move too far forward, you will either be out of balance, slip out or crash.",
-                        "Focus on keeping your belly button stacked over the rail. This will help keep you on the rail. If your belly button is not stacked on the rail, it's easy to slip off the feature.",
+                        "Lock into the rail and make sure you have a stable platform to push off us. If you're sliding off the side, it will make it hard to pop, rotate and land. Also, keep your eyes at the end of the feature or at the landing (not staring at your feet).",
+                        "Wind-up your shoulders about 25 degrees and start to throw the trick at the last 25 percent of the rail.",
+                        "Notice how I'm doing an ollie and loading up the tail of my snowboard then releasing the pressure. This will help me get more hang time, thus making the 180 looks smooth. More hang time also enables you to get the rotation around if that's what you struggle with.",
+                        "Commit to driving your back shoulder toward the landing. Most people don't finish the trick with their new lead (switch) shoulder, and they keep it at about 45 degrees under rotated. When you under rotate your shoulder, hips, and board, you make it hard to get in a strong position with the weight distributed between both feet.\n\n" + 
+                        "**Bonus- You wanna land in a switch strong stance with your spine upright. A few videos back, I posted my morning warm-ups. Use those same drills but do it switch. Game changer for sure.",
+                        "Ride away smooth!",
+                        "Try this trick on a harder feature to make it more fun!"
                     ]
                 },
                 video: 'videos/beginner/5050_frontside_180.mp4'
