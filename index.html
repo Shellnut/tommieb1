@@ -2,8 +2,9 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     
+    <!-- Library scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
@@ -13,8 +14,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
 
+    <!-- Angular Scripts -->
+    <script src="app/app.js"></script>
+    <script src="app/data/instagramData.js"></script>
+    <script src="app/services/myService.js"></script>
+    <script src="app/filters/myFilter.js"></script>
+    <script src="app/controllers/homeCtrl.js"></script>
+
+    <!-- Style -->
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://bootswatch.com/3/superhero/bootstrap.min.css" rel="stylesheet">
     <!-- <link href="https://bootswatch.com/3/cosmo/bootstrap.min.css" rel="stylesheet"> -->
@@ -22,7 +31,8 @@
     <!-- <link href="https://bootswatch.com/3/sandstone/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="https://bootswatch.com/3/united/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="https://bootswatch.com/3/darkly/bootstrap.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -39,31 +49,55 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Tommieb1</a>
+            <a class="navbar-brand">Tommieb1</a>
           </div>
       
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Beginner <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Beginner <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li ng-repeat="val in skills.beginner"><a ng-click="updateIndex('beginner', $index)" href="#">{{val.title}}</a></li>
+                  <li ng-repeat="val in skills.beginner">
+                    <a ng-class="{'active-nav': $index === myIndex && activeLevel === 'beginner'}" ng-click="updateIndex('beginner', $index)">{{val.title}}</a>
+                  </li>
                 </ul>
               </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Intermediate <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Intermediate <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li ng-repeat="val in skills.intermediate"><a ng-click="updateIndex('intermediate', $index)" href="#">{{val.title}}</a></li>
+                  <li ng-repeat="val in skills.intermediate">
+                    <a ng-class="{'active-nav': $index === myIndex && activeLevel === 'intermediate'}" ng-click="updateIndex('intermediate', $index)">{{val.title}}</a>
+                  </li>
                 </ul>
               </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Advanced <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Advanced <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li ng-repeat="val in skills.advanced"><a ng-click="updateIndex('advanced', $index)" href="#">{{val.title}}</a></li>
+                  <li ng-repeat="val in skills.advanced">
+                    <a ng-class="{'active-nav': $index === myIndex && activeLevel === 'advanced'}" ng-click="updateIndex('advanced', $index)">{{val.title}}</a>
+                  </li>
+                </ul>
+              </li>  
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Try at Home <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li ng-repeat="val in skills.home">
+                    <a ng-class="{'active-nav': $index === myIndex && activeLevel === 'home'}" ng-click="updateIndex('home', $index)">{{val.title}}</a>
+                  </li>
                 </ul>
               </li>  
             </ul>
+            <form class="navbar-form navbar-right">
+              <div class="form-group">
+                <input type="text" 
+                       ng-model="searchValue" 
+                       placeholder="Backside 360"
+                       typeahead-on-select="onSelect($item)"
+                       uib-typeahead="val.title for val in searchValues | filter:$viewValue | limitTo:8" 
+                       class="form-control">
+              </div>
+            </form>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
@@ -75,8 +109,7 @@
 
             <h3>{{activeLevel | capitalize}} - {{selectedSkillLevel[myIndex].title}}</h3>
 
-            <p>{{selectedSkillLevel[myIndex].description.text}}</p>
-            <p ng-show="selectedSkillLevel[myIndex].prerequsites"><i>{{selectedSkillLevel[myIndex].prerequsites}}</i></p>
+            <p class="description-text">{{selectedSkillLevel[myIndex].description.text}}</p>
             <div class="videogular-container">
               <videogular vg-theme="config.theme.url">
                 <vg-media vg-src="config.sources"
@@ -85,20 +118,32 @@
                 </vg-media>
               </videogular>
             </div>
-            <ol>
-                <li ng-repeat="step in selectedSkillLevel[myIndex].description.steps">{{step}}</li>
-            </ol>
+            <p ng-repeat="step in selectedSkillLevel[myIndex].description.steps">{{step}}</li>
+            <p>Want me to breakdown your own video? <a href="mailto:tommieb1@gmail.com">Email</a> me for pricing and information.</p>
+            <!-- <p>{{selectedSkillLevel[myIndex].description.tags}}</p> -->
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li ng-repeat="val in selectedSkillLevel" class="page-item">
-                      <a class="page-link" href="#" uib-tooltip="{{val.title}}" ng-click="updateIndex(activeLevel, $index)">{{$index + 1}}</a>
-                  </li>
-                </ul>
-            </nav>
-
+            <div class="text-center">
+              <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li ng-repeat="val in selectedSkillLevel" class="page-item">
+                        <a ng-class="{'active-nav': $index === myIndex}" class="page-link" uib-tooltip="{{val.title}}" ng-click="updateIndex(activeLevel, $index)">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+              </nav>
+            </div>
         </div>
+    </div>
 
+    <div class="col-lg-12 text-center well well-sm">
+      <a href="https://www.instagram.com/tommieb1/" class="btn btn-social-icon">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://youtube.com/user/Tommiembs88" class="btn btn-social-icon">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="https://www.patreon.com/Tommiebennett" class="btn btn-social-icon">
+        <i class="fab fa-patreon"></i>
+      </a>
     </div>
 
 </body>

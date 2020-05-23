@@ -6,3 +6,11 @@
     max-width: 160vh; /* 16/9 * 90 = 160 */
 	margin: auto;
 }
+
+p.description-text {
+    white-space: pre-line;
+}
+
+.active-nav {
+    opacity: 0.5;
+}
